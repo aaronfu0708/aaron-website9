@@ -1,0 +1,972 @@
+.mainContent {
+    padding-top: 66px;
+    padding-bottom: 100px;
+    max-width: 1100px;  
+    margin: 0 auto;
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .filterContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 340px;
+    margin-bottom: 82px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .filterRow {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .selectWrapper {
+    flex: 1;
+  }
+
+  .addNoteButton {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 30px;
+    padding: 12px 16px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .addNoteButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+    z-index: 0;
+  }
+
+  .addNoteButton:hover::before {
+    left: 100%;
+  }
+
+  .addNoteButton > * {
+    position: relative;
+    z-index: 1;
+  }
+
+
+
+  .addNoteButton:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  }
+
+  .addNoteButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .addNoteButton:disabled:hover {
+    transform: none;
+  }
+
+
+  
+  .filterLabel {
+    font-size: 24px;
+    line-height: 34px;
+    color: var(--primary-text-light);
+  }
+  
+  .selectWrapper {
+    position: relative;
+    flex: 1;
+  }
+  
+  .customSelect {
+    width: 100%;
+    background-color: var(--select-bg);
+    border: 1px solid var(--select-border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 16px;
+    line-height: 16px;
+    color: var(--primary-text-light);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+  }
+
+  /* 自定義下拉選單容器 */
+  .customSelectContainer {
+    position: relative;
+    width: 100%;
+  }
+
+  /* 自定義下拉選單 */
+  .customDropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: rgba(12, 11, 55, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--select-border);
+    border-radius: 8px;
+    margin-top: 4px;
+    z-index: 1000;
+    display: none;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+
+  .customDropdown.active {
+    display: block;
+  }
+
+  .customDropdownOption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    color: var(--primary-text-light);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    font-size: 16px;
+  }
+
+  .customDropdownOption:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .customDropdownOption.selected {
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .optionText {
+    flex: 1;
+    padding-bottom: 10px;
+    font-size: 16px;
+  }
+
+  .deleteOptionBtn {
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .deleteOptionBtn:hover {
+    opacity: 1;
+  }
+
+  .deleteOptionBtn img {
+    width: 16px;
+    height: 16px;
+    filter: brightness(0) invert(1);
+  }
+
+
+
+  /* Markdown 樣式 */
+  .noteText h1,
+  .noteText h2,
+  .noteText h3 {
+    margin: 16px 0 8px 0;
+    color: var(--primary-text-dark);
+    font-weight: 600;
+  }
+
+  .noteText h1 {
+    font-size: 20px;
+    border-bottom: 2px solid #001830;
+    padding-bottom: 4px;
+  }
+
+  .noteText h2 {
+    font-size: 18px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 2px;
+  }
+
+  .noteText h3 {
+    font-size: 16px;
+  }
+
+  .noteText strong {
+    font-weight: 600;
+    color: var(--primary-text-dark);
+  }
+
+  .noteText em {
+    font-style: italic;
+    color: var(--primary-text-dark);
+  }
+
+  .noteText code {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    color: var(--primary-text-dark);
+  }
+
+  .noteText li {
+    margin: 4px 0;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .noteText li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color-1);
+    font-weight: bold;
+  }
+
+
+
+  /* 確保在所有瀏覽器中都有深色背景 */
+  .customSelect:focus {
+    background-color: rgba(12, 11, 55, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: var(--primary-text-light);
+    outline: none;
+    border-color: var(--accent-color-1);
+  }
+  
+  .selectArrow {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    pointer-events: none;
+  }
+  
+.notesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 40px;
+  align-items: stretch;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+  
+  .noteCard {
+    position: relative;
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: -6px 4px 4px 0px rgba(0, 0, 0, 0.8);
+    padding: 32px 20px 32px 23px;
+    height: 424px;
+    max-width: 340px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+  
+  
+  .cardContent {
+    color: var(--primary-text-dark);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  .noteTitle {
+    font-size: 24px;
+    line-height: 1.2;
+    margin: 0 0 15px 0;
+    position: relative;
+  }
+  
+  .noteTitle::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary-text-dark);
+    border-radius: 1px;
+  }
+
+  .noteText {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.2;
+    margin: 0 0 15px 0;
+    flex-grow: 1;
+    overflow-y: auto;
+    max-height: 280px;
+    padding-right: 8px;
+  }
+  
+  .noteAnswer {
+    margin-top: 20px;
+  }
+  
+  .addButton {
+        align-self: flex-end;
+        margin-top: 16px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+
+  .generateButton {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        margin-bottom: 2px;
+      }
+  .generateButton:hover .arrowUp,
+  .generateButton:hover .generateText {
+        color: #888888;
+      }
+  .generateText {
+        color: #001830;
+        font-size: 14px;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+  .arrowUp {
+        font-size: 20px;
+        color: #333;
+        line-height: 1;
+      }
+  .addPlus {
+        width: 36px;
+        height: 36px;
+        background: #001830;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .addPlus::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        transition: left 0.5s ease;
+        z-index: 0;
+      }
+
+      .addPlus:hover::before {
+        left: 100%;
+      }
+
+      .addPlus > * {
+        position: relative;
+        z-index: 1;
+      }
+
+
+
+  .addPlus img {
+        width: 15px;
+        height: 15px;
+        object-fit: contain;
+        filter: brightness(0) invert(1);
+      }
+
+  .addPlus:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  }
+  .actionBar {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: var(--color-button-primary);
+    border-radius: 25px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transform: scaleX(0) translateX(20px);
+    transform-origin: right center;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 10;
+  }
+
+  .actionBar.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scaleX(1) translateX(0);
+  }
+
+  .actionItem {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .actionItem::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+    z-index: 0;
+  }
+
+  .actionItem:hover::before {
+    left: 100%;
+  }
+
+  .actionItem > * {
+    position: relative;
+    z-index: 1;
+  }
+
+
+
+  .actionItem:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  }
+
+  .actionPlus {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+  }
+
+
+  .actionBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .actionBackdrop.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .emptyState {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--primary-text-light);
+  }
+
+
+
+  .emptyState h3 {
+    font-size: 24px;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .emptyState p {
+    font-size: 16px;
+    opacity: 0.8;
+    line-height: 1.5;
+  }
+
+  .upgradeState {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--primary-text-light);
+  }
+
+  .upgradeIcon {
+    font-size: 64px;
+    margin-bottom: 20px;
+    opacity: 0.9;
+  }
+
+  .upgradeState h3 {
+    font-size: 24px;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .upgradeState p {
+    font-size: 16px;
+    opacity: 0.8;
+    line-height: 1.5;
+    margin-bottom: 30px;
+  }
+
+  .upgradeButton {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 12px 24px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .upgradeButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+    z-index: 0;
+  }
+
+  .upgradeButton:hover::before {
+    left: 100%;
+  }
+
+  .upgradeButton > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .upgradeButton:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+  }
+
+  .modalContent {
+    background: white;
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 800px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    color: #333;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .modalTitle {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+  }
+
+  .modalClose {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+  }
+
+  .modalClose:hover {
+    background: #f5f5f5;
+    color: #333;
+  }
+
+  .modalBody {
+    margin-bottom: 20px;
+  }
+
+  .modalTextarea {
+    width: 100%;
+    min-height: 400px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    line-height: 1.6;
+    font-family: 'Courier New', monospace;
+    resize: vertical;
+  }
+
+  .modalTextarea:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+  }
+
+  .modalFooter {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .modalBtn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .modalBtn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+    z-index: 0;
+  }
+
+  .modalBtn:hover::before {
+    left: 100%;
+  }
+
+  .modalBtn > * {
+    position: relative;
+    z-index: 1;
+  }
+
+
+
+  .modalBtnPrimary {
+    background: var(--color-button-primary);
+    color: white;
+  }
+
+  .modalBtnPrimary:hover {
+    background: var(--color-button-primary-hover);
+    color: black;
+  }
+
+  .modalBtnSecondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: black;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .modalBtnSecondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: black;
+    transform: translateX(8px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  }
+
+  /* 搬移模態框下拉選單樣式 */
+  .moveCustomSelectContainer {
+    position: relative;
+    width: 100%;
+  }
+
+  .moveCustomSelect {
+    width: 100%;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 16px;
+    line-height: 1.2;
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .moveCustomSelect:hover {
+    border-color: #001830;
+    box-shadow: 0 4px 12px rgba(0, 24, 48, 0.1);
+  }
+
+  .moveSelectArrow {
+    width: 16px;
+    height: 16px;
+    pointer-events: none;
+    transition: transform 0.3s ease;
+  }
+
+  .moveCustomDropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    margin-top: 8px;
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+  }
+
+  .moveCustomDropdown.active {
+    display: block;
+  }
+
+  .moveDropdownOption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    border-radius: 8px;
+    margin: 2px 4px;
+    font-size: 16px;
+  }
+
+  .moveDropdownOption:hover {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  }
+
+  .moveDropdownOption.selected {
+    background: #001830;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 24, 48, 0.3);
+  }
+
+  .moveOptionText {
+    flex: 1;
+  }
+  
+
+    @media (max-width: 768px) {
+      .mainContent {
+        padding-top: 50px;
+        padding-bottom: 60px;
+        max-width: 100%;
+        margin: 0;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .filterContainer {
+        max-width: 100%;
+        margin-bottom: 40px;
+      }
+
+      .filterLabel {
+        font-size: 20px;
+        line-height: 28px;
+      }
+
+      .customSelect {
+        padding: 10px 14px;
+        font-size: 14px;
+      }
+
+      .customDropdownOption {
+        padding: 10px 14px;
+        font-size: 14px;
+      }
+
+      .deleteOptionBtn img {
+        width: 14px;
+        height: 14px;
+      }
+
+
+
+      /* 手機版 Markdown 樣式 */
+      .noteText h1 {
+        font-size: 18px;
+        margin: 12px 0 6px 0;
+      }
+
+      .noteText h2 {
+        font-size: 16px;
+        margin: 10px 0 5px 0;
+      }
+
+      .noteText h3 {
+        font-size: 14px;
+        margin: 8px 0 4px 0;
+      }
+
+      .noteText code {
+        font-size: 12px;
+        padding: 1px 4px;
+      }
+
+      .noteText li {
+        margin: 3px 0;
+        padding-left: 12px;
+      }
+
+      .notesGrid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        max-width: 100%;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+      }
+
+      .noteCard {
+        padding: 24px 16px 24px 18px;
+        height: 350px;
+        min-width: 320px !important;
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0;
+      }
+
+      .noteTitle {
+        font-size: 20px;
+        margin-bottom: 12px;
+        position: relative;
+      }
+      
+      .noteTitle::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 100%;
+        height: 1.5px;
+        background: var(--primary-text-dark);
+        border-radius: 1px;
+      }
+
+      .noteText {
+        font-size: 14px;
+        margin-bottom: 12px;
+        flex-grow: 1;
+        overflow-y: auto;
+        max-height: 200px;
+        padding-right: 8px;
+      }
+
+      .addButton {
+        margin-top: 12px;
+      }
+
+      .addPlus {
+        font-size: 1.2rem;
+        padding: 23px 23px;
+      }
+
+      .actionBar {
+        padding: 13px 20px;
+        gap: 15px;
+      }
+
+      .actionItem {
+        font-size: 14px;
+        padding: 2px 6px;
+      }
+
+      .actionPlus {
+        font-size: 16px;
+        padding: 3px 6px;
+      }
+
+      .addNoteButton{
+        font-size: 13px;
+      }
+      .generateText {
+        margin-bottom: 5px;
+      }
+      .modalContent {
+        margin: 20px;
+        max-width: calc(100% - 40px);
+        max-height: calc(90% - 40px);
+      }
+
+      .modalTextarea {
+        min-height: 200px;
+      }
+    }

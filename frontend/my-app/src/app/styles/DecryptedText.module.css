@@ -1,0 +1,174 @@
+.decryptedText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Courier New', monospace;
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--text-color, #ffffff);
+  background: transparent;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  min-height: 100vh;
+  min-width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  backdrop-filter: none;
+  z-index: 1000;
+}
+
+.glitchBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+  z-index: 1;
+  opacity: 0.25;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.glitchLine {
+  display: flex;
+  justify-content: space-between;
+  animation: glitchLine 4s infinite;
+  width: 100%;
+  opacity: 0.8;
+}
+
+.glitchChar {
+  font-family: 'Courier New', monospace;
+  font-size: 2.5rem;
+  color: var(--accent-color-2, #57588c);
+  animation: glitchChar 1.5s infinite;
+  opacity: 0.4;
+  transition: all 0.2s ease;
+  animation-delay: calc(var(--char-index, 0) * 0.1s);
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: auto;
+  z-index: 2;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+}
+
+.mainText {
+  letter-spacing: 3px;
+  line-height: 1.8;
+  text-align: center;
+  color: var(--accent-color-2, #57588c);
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.scrambleText {
+  letter-spacing: 3px;
+  line-height: 1.8;
+  text-align: center;
+  color: var(--accent-color-2, #57588c);
+  position: relative;
+  z-index: 3;
+  font-size: 0.8em;
+  opacity: 0.8;
+  text-shadow: 0 0 8px var(--accent-color-2, #57588c);
+}
+
+
+@keyframes glitchChar {
+  0%, 100% {
+    opacity: 0.8;
+    color: var(--accent-color-2, #57588c);
+    transform: scale(1) translateY(0);
+  }
+  20% {
+    opacity: 0.9;
+    color: #8a9cff;
+    transform: scale(1.05) translateY(-1px);
+  }
+  40% {
+    opacity: 0.7;
+    color: #7b68ee;
+    transform: scale(0.95) translateY(1px);
+  }
+  60% {
+    opacity: 0.9;
+    color: #9370db;
+    transform: scale(1.02) translateY(-0.5px);
+  }
+  80% {
+    opacity: 0.8;
+    color: #6a5acd;
+    transform: scale(1.03) translateY(0.5px);
+  }
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .decryptedText {
+    font-size: 1.8rem;
+    min-height: 100vh;
+    min-width: 100vw;
+  }
+  
+  .glitchBackground {
+    padding: 0;
+  }
+  
+  .glitchChar {
+    font-size: 1.3rem;
+    margin: 0 1px;
+  }
+  
+  .mainText {
+    letter-spacing: 2px;
+    font-size: 1.2rem;
+  }
+  
+  .scrambleText {
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+  }
+  
+}
+
+/* 動畫完成後的狀態 */
+.decryptedText.complete {
+  border-color: var(--accent-color-2, #57588c);
+  box-shadow: 0 0 30px var(--accent-color-2, #57588c);
+  transition: all 0.5s ease;
+}
+
+/* 載入狀態 */
+.decryptedText.loading {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 20px var(--accent-color-2, #57588c);
+  }
+  50% {
+    box-shadow: 0 0 30px var(--accent-color-2, #57588c);
+  }
+  100% {
+    box-shadow: 0 0 20px var(--accent-color-2, #57588c);
+  }
+} 

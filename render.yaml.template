@@ -1,0 +1,66 @@
+services:
+  # Django 後端服務
+  - type: web
+    name: aaron-website9-backend
+    env: python
+    plan: free
+    buildCommand: pip install -r backend-django/requirements.txt
+    startCommand: cd backend-django && gunicorn myapps.wsgi:application --bind 0.0.0.0:$PORT --workers 2 --timeout 30
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_DEBUG
+        value: 0
+      - key: DJANGO_ALLOWED_HOSTS
+        value: aaron-website9.vercel.app,localhost,127.0.0.1
+      - key: DB_ENGINE
+        value: django.db.backends.mysql
+      - key: DB_NAME
+        value: your-db-name
+      - key: DB_USER
+        value: your-db-user
+      - key: DB_PASSWORD
+        value: your-db-password
+      - key: DB_HOST
+        value: your-db-host
+      - key: DB_PORT
+        value: 3306
+      - key: DATABASE_URL
+        value: mysql://your-db-user:your-db-password@your-db-host:3306/your-db-name
+      - key: EMAIL_HOST_USER
+        value: your-email@gmail.com
+      - key: EMAIL_HOST_PASSWORD
+        value: your-email-password
+      - key: NEXT_PUBLIC_ORIGIN
+        value: https://aaron-website9.vercel.app
+      - key: MERCHANT_ID
+        value: your-merchant-id
+      - key: HASH_KEY
+        value: your-hash-key
+      - key: HASH_IV
+        value: your-hash-iv
+      - key: OPENAI_API_KEY
+        value: your-openai-api-key
+      - key: OPENAI_PROJECT_ID
+        value: your-openai-project-id
+
+  # ML 服務
+  - type: web
+    name: aaron-website9-ml
+    env: python
+    plan: free
+    buildCommand: pip install -r ml-service/requirements.txt
+    startCommand: cd ml-service && gunicorn -k eventlet -w 1 -b 0.0.0.0:$PORT topic_apps:app
+    envVars:
+      - key: OPENAI_API_KEY
+        value: your-openai-api-key
+      - key: OPENAI_PROJECT_ID
+        value: your-openai-project-id
+      - key: DJANGO_BASE_URL
+        value: https://aaron-website9-backend.onrender.com
+      - key: FLASK_ENV
+        value: production
+      - key: FLASK_DEBUG
+        value: 0
+      - key: CORS_ORIGINS
+        value: https://aaron-website9.vercel.app

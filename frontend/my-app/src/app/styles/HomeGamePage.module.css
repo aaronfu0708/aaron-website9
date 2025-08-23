@@ -1,0 +1,430 @@
+/* 遊戲選擇首頁樣式 */
+.gameSelectSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 75vh;
+    padding: 20px 0;
+}
+
+.pageContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.difficultyHub {
+    position: relative;
+    width: 600px;
+    height: 500px;
+    margin-left: 20vw;
+}
+
+.hubOutline {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.hubTitle {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-60%, 0%);
+    margin: 0;
+    color: var(--text-color);
+    font-size: 20px;
+    text-align: center;
+    letter-spacing: 10px;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.difficultyButton {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 13px;
+    padding: 20px 25px;
+    background: linear-gradient(91deg, var(--button-bg) 41.35%, var(--button-bg-light) 100.01%);
+    width: 150px;
+    height: 65px;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+    border: 1px solid var(--card-border);
+    transform-origin: center;
+    overflow: hidden;
+    cursor: pointer;
+    border: none;
+}
+
+.difficultyButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+    z-index: 0;
+}
+
+.difficultyButton:hover::before {
+    left: 100%;
+}
+
+.difficultyButton > * {
+    position: relative;
+    z-index: 1;
+}
+
+.difficultyButton:hover {
+    transform: scale(1.05);
+}
+
+.difficultyButton.selected {
+    background: #57588c;
+}
+
+.difficultyButton img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+}
+
+.difficultyButton span {
+    font-size: 16px;
+    letter-spacing: 6px;
+    color: var(--text-color);
+}
+
+.difficultyTest {
+    top: 38%;
+    left: -28%;
+}
+
+.difficultyMaster {
+    bottom: -5%;
+    left: -20%;
+}
+
+.difficultyBeginner {
+    top: -5.5%;
+    right: -5%;
+}
+
+.difficultyIntermediate {
+    top: 38.5%;
+    right: -18%;
+}
+
+.difficultyAdvanced {
+    bottom: -5%;
+    right: -29%;
+}
+
+.topicInput {
+    position: absolute;
+    top: 23%;
+    left: 50%;
+    transform: translateX(50%);
+    display: flex;
+    align-items: center;
+    width: 400px;
+    height: 65px;
+    padding: 25px;
+    background-color: var(--color-card-bg);
+    border-radius: 50px;
+    box-shadow: 0px 0px 16px 0px var(--shadow-white);
+    border: 2px solid transparent;
+    font-size: 16px;
+    letter-spacing: 2px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    color: var(--text-color);
+}
+
+.topicInput:focus {
+    /* 参考题数输入框，移除所有transform效果 */
+    transform: translateX(50%);
+}
+
+.topicInput::placeholder {
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+.challengeStartForm {
+    position: absolute;
+    top: 55%;
+    left: 57%;
+    transform: translateX(50%);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 320px;
+    height: 65px;
+    padding: 15px 20px;
+    background-color: var(--color-card-bg);
+    border-radius: 50px;
+    box-shadow: 0px 0px 16px 0px var(--shadow-white);
+    border: 2px solid transparent;
+    font-size: 20px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.challengeStartForm:focus-within {
+    /* 参考题数输入框，移除所有transform效果 */
+    transform: translateX(50%);
+}
+
+.questionCountInput {
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    letter-spacing: 2px;
+    color: var(--text-color);
+    width: 120px;
+    text-align: left;
+    flex: 1;
+}
+
+.questionCountInput::placeholder {
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+.questionCountInput::-webkit-outer-spin-button,
+.questionCountInput::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.startButton {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 25px;
+    background: var(--accent-color-2);
+    border-radius: 50px;
+    box-shadow: 0px 4px 16px 0px var(--shadow-white);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+    border: none;
+    cursor: pointer;
+}
+
+.startButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+    z-index: 0;
+}
+
+.startButton:hover::before {
+    left: 100%;
+}
+
+.startButton > * {
+    position: relative;
+    z-index: 1;
+}
+
+.startButton:hover {
+    transform: scale(1.05);
+}
+
+.startButton span {
+    white-space: nowrap;
+    font-size: 15px;
+    color: var(--text-color);
+}
+
+.startButton img {
+    width: 12px;
+    height: 12px;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .gameSelectSection {
+        min-height: auto;
+        height: 100vh;
+        padding: 20px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .pageContainer {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .difficultyHub {
+        position: relative;
+        width: 100%;
+        max-width: 180px;
+        height: 280px;
+        margin-left: 0;
+    }
+
+    .hubTitle {
+        font-size: 10px;
+        letter-spacing: 6px;
+        transform: translate(-53%, -20%);
+    }
+
+    .difficultyButton {
+        position: absolute;
+        width: 85px;
+        height: 40px;
+        padding: 8px 10px;
+        gap: 6px;
+    }
+
+    .difficultyButton span {
+        font-size: 11px;
+        letter-spacing: 2px;
+    }
+
+    .difficultyButton img {
+        width: 12px;
+        height: 12px;
+    }
+
+    .difficultyTest {
+        top: 41%;
+        left: -51.5%;
+    }
+
+    .difficultyMaster {
+        bottom: 17%;
+        left: -43%;
+    }
+
+    .difficultyBeginner {
+        top: 16%;
+        right: -29%;
+    }
+
+    .difficultyIntermediate {
+        top: 40%;
+        right: -42%;
+    }
+
+    .difficultyAdvanced {
+        bottom: 17.5%;
+        right: -52%;
+    }
+
+    .topicInput {
+        position: static;
+        transform: none;
+        width: 100%;
+        max-width: 320px;
+        height: 55px;
+        padding: 10px 20px;
+        font-size: 16px; /* 防止iOS缩放 */
+        margin-top: 6vh;
+        color: #fff;
+    }
+
+    .topicInput:focus {
+        /* 参考题数输入框，移除所有transform效果 */
+        transform: none;
+    }
+
+    .challengeStartForm {
+        position: static;
+        transform: none;
+        width: 100%;
+        max-width: 320px;
+        height: 55px;
+        padding: 12px 15px;
+        gap: 10px;
+    }
+
+    .challengeStartForm:focus-within {
+        /* 参考题数输入框，移除所有transform效果 */
+        transform: none;
+    }
+
+    .questionCountInput {
+        font-size: 16px; /* 防止iOS缩放 */
+        letter-spacing: 2px;
+        width: 100px;
+        padding: 12px 5px;
+    }
+
+    .startButton {
+        padding: 12px 20px;
+    }
+
+    .startButton span {
+        font-size: 13px;
+        letter-spacing: 1.5px;
+    }
+
+    .startButton img {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+/* 解密動畫覆蓋層樣式 */
+.decryptionOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-card-bg, rgba(0, 0, 0, 0.95)), var(--color-card-bg, rgba(0, 0, 0, 0.9)));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    backdrop-filter: blur(20px);
+}
+
+.decryptionContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+.decryptionText {
+    margin: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .decryptionContainer {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+    }
+} 
