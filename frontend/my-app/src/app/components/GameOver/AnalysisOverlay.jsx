@@ -131,7 +131,6 @@ export default function AnalysisOverlay({
       });
     } else {
       lines.push("");
-      lines.push("")；
     }
 
     return lines.join("\n");
