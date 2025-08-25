@@ -131,9 +131,7 @@ export default function AnalysisOverlay({
       });
     } else {
       lines.push("");
-      lines.push("你的問題會在這裡");
-      lines.push("");
-      lines.push("AI的回答在這裡");
+      lines.push("")；
     }
 
     return lines.join("\n");
